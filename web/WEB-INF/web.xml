@@ -13,11 +13,13 @@
             <param-name>data</param-name>
             <param-value>ServletConfig</param-value>
         </init-param>
+        <!--加载优先级,0为最后-->
+        <load-on-startup>0</load-on-startup>
     </servlet>
     <!--<servlet-mapping>servlet映射-->
     <servlet-mapping>
         <servlet-name>Hello</servlet-name>
-        <url-pattern>/demo</url-pattern>
+        <url-pattern>/hello</url-pattern>
     </servlet-mapping>
 
     <!--过滤器-->
@@ -27,8 +29,9 @@
     </filter>
     <filter-mapping>
         <filter-name>myFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/hello</url-pattern>
     </filter-mapping>
+
 
     <!--监听器-->
     <listener>
