@@ -3,7 +3,9 @@ package com.fcc.servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
@@ -54,6 +56,20 @@ public class Hello extends HttpServlet {
         request.getParameterNames();
         Map<String, String[]> map = request.getParameterMap();
         //HttpServletRequest对象获取客户端请求信息 end
+
+        //获取cookie
+        Cookie[] cookies = request.getCookies(); //获取cookie数组
+        for(Cookie cookie:cookies){//遍历cookie数组
+            System.out.println(cookie.getName());//获取cookie的名字
+            System.out.println(cookie.getValue()); //获取cookie的值
+        }
+        //操作cookie
+        Cookie cookie = new Cookie("name","value");
+        cookie.setMaxAge(3600*24*3);//设置其生命周期
+        response.addCookie(cookie);
+        HttpSession session = request.getSession();
+        session.setAttribute("name","cc");
+        session.getServletContext();
 
 
         //设置服务器接收数据的编码格式，如果传输过来的数据不是utf-8则乱码
